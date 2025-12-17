@@ -1,13 +1,22 @@
 package com.example.twinmindandroidassignment.room.entities
 
+import androidx.room.Entity
+import androidx.room.Index
+import androidx.room.PrimaryKey
+
+@Entity(
+    tableName = "audio_chunks",
+    indices = [Index(value = ["meetingId", "indexInMeeting"], unique = true)]
+)
 data class AudioChunkEntity(
-    val id: String,
+    @PrimaryKey val id: String,
     val sessionId: String,
-    val index: Int,
+    val meetingId: String,
+    val indexInMeeting: Int,
     val filePath: String,
-    val createdAt: Int,
-    val durationMs: Int,
-    val uploaded: Boolean,
-    val transcriptionStatus: String, //PENDING/UPLOADING/DONE/FAILED
-    val retryCount: Int
+    val durationSec: Int = 30,
+    val uploadedForTranscription: Boolean = false,
+    val transcribed: Boolean = false,
+    val failed: Boolean = false,
+    val createdAtEpochMs: Long
 )
