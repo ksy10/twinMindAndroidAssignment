@@ -36,7 +36,7 @@ object RecordingNotification {
         ensureChannel(context)
 
         val stopIntent = Intent(context, RecordingForegroundService::class.java).apply {
-            action = RecordingForegroundService.ACTION_STOP
+            //action = RecordingForegroundService.ACTION_STOP
         }
         val stopPI = PendingIntent.getService(
             context,
@@ -47,7 +47,7 @@ object RecordingNotification {
         val title = if (isPaused) "Paused" else "Recording"
         val time = format(elapsedSec)
         return NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.)
+            //.setSmallIcon(R.drawable.)
             .setContentTitle("$title • $time")
             .setContentText(status)
             .setOngoing(true)
